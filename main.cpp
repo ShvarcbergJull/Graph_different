@@ -77,7 +77,7 @@ int main()
 			fout << (*kt)->getName() << ' ';
 		
 		fout.close();
-
+		delete[] outFileName;
 		one.kill();
 		i++;
 	}
