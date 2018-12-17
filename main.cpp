@@ -16,7 +16,8 @@ int main()
 	Graph one = Graph();
 	BFS n = BFS(g);
 	int i = 1;
-	/*one.addNode(*g.begin());
+	/* 
+	one.addNode(*g.begin());
 
 	for (node_iterator it = g.begin();it != g.end();it++)
 		for (node_iterator jt = g.begin(); jt != g.end(); jt++)
@@ -40,7 +41,7 @@ int main()
 	for (node_iterator it = g.begin(); it != g.end(); it++)
 		cout << (*it)->getName() << ' ';
 	cout << endl;*/
-	
+
 	while (g.sizeG() != 0)
 	{
 		node_iterator it = g.begin();
@@ -58,12 +59,24 @@ int main()
 			if (one.ser(*kt))
 				g.removeNode(*kt);
 
-		cout << "Graph " << i << ": ";
-
-		for (node_iterator kt = one.begin(); kt != one.end(); kt++)
-			cout << (*kt)->getName() << ' ';
+		//cout << "Graph " << i << ": ";
 		
-		cout << endl;
+		char name = i + '0';
+		const char* shablon = ".txt";
+		char* outFileName = new char[5];
+
+		outFileName[0] = name;
+		for (int j = 1; j < 5; j++)
+		{
+			outFileName[j] = *shablon;
+			shablon++;
+		}
+
+		ofstream fout(outFileName);
+		for (node_iterator kt = one.begin(); kt != one.end(); kt++)
+			fout << (*kt)->getName() << ' ';
+		
+		fout.close();
 
 		one.kill();
 		i++;
